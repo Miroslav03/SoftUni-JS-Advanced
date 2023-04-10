@@ -1,20 +1,22 @@
+function fromJSONToHTMLTable(input) {
 
-const data = JSON.parse(input)
+    const arr = []
+    const data = JSON.parse(input)
 
-const arr = []
+    arr.push(`<table>`);
 
-arr.push(`<table>`);
+    const keys = Object.keys(data[0])
+    arr.push(`   <tr>${keys.map(a => `<th>${escape(a)}</th>`).join(``)}</tr>   `);
 
-const keys = Object.keys(arr[0]).map(a => a.split(" ").join("")).join('</th><th>')
-arr.push(`   <tr><th>${keys}</th></tr>   `);
+    for (const obj of data) {
+        const values = Object.values(obj)
+        arr.push(`   <tr>${values.map(a => `<td>${escape(a)}</td>`).join(``)}</tr>   `);
+       
+    }
+    function escape(value){
+        return value.toString().replace(`<`,`&lt;`).replace(`>`,`&gt;`)
+    }
+    arr.push(`</table>`);
 
-for (const obj of arr) {
-    const values = Object.values(obj).join('</td><td>')
-    arr.push(`   <tr><td>${values}</td></tr>   `);
+    return arr.join(`\n`)
 }
-
-arr.push(`</table>`);
-
-return arr.join(`\n`)
-
-
