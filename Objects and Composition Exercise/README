@@ -82,18 +82,7 @@ The function will receive three valid parameters – width (Number), height (Num
 Output
 Your function must return an object with all properties and methods as described. The calcArea() method of the object should return a number. The first letter in the color must be upperCase().
 
-9.	Sorted List*
-Create a function that returns a special object, which keeps a list of numbers, sorted in ascending order. It must support the following functionality:
-•	add(element) - adds a new element to the collection
-•	remove(index) - removes the element at position index
-•	get(index) - returns the value of the element at position index
-•	size - number of elements stored in the collection
-The correct order of the elements must be kept at all times, regardless of which operation is called. Removing and retrieving elements shouldn’t work if the provided index points outside the length of the collection (either throw an error or do nothing). Note the size of the collection is not a function.
-Input / Output
-The initial function takes no arguments and must return an object.
-All methods on the object that expect input will receive data as parameters. Methods that have validation will be tested with both valid and invalid data. Any result expected from a method should be returned as its result.
-
-10.	Heroes
+9.	Heroes
 Create a function that returns an object with 2 methods (mage and fighter). This object should be able to create heroes (fighters and mages). Every hero has a state.
 •	Fighters have a name, health = 100, and stamina = 100 and every fighter can fight.  When he fights his stamina decreases by 1 and the following message is printed on the console:
 `${fighter's name} slashes at the foe!`
