@@ -1,7 +1,7 @@
 function solve() {
 
     const charecter = {}
-
+    
     charecter.fighter = (name) => {
         const fighter = {};
         fighter.name = name;
