@@ -1,5 +1,5 @@
 function search() {
-   const searchBox = document.querySelector('#searchText')
+   const searchBox = document.getElementById('searchText')
    const list  = document.querySelectorAll('#towns li')
    const townList  = Array.from(list)
 

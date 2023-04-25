@@ -1,3 +1,7 @@
 function solve() {
-  //TODO
+  const input = document.getElementById('input')
+  const output = document.getElementById('output')
+
+  
+
 }
