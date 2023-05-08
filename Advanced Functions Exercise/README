@@ -1,0 +1,127 @@
+1. Sort Array
+Write a function that sorts an array with numeric values in ascending or descending order, depending on an
+argument that is passed to it.
+You will receive a numeric array and a string as arguments to the function in your code.
+ If the second argument is asc, the array should be sorted in ascending order (smallest values first).
+ If it is desc, the array should be sorted in descending order (largest first).
+Input
+You will receive a numeric array and a string as input parameters.
+Output
+The output should be the sorted array.
+
+2. Argument Info
+Write a function that displays information about the arguments which are passed to it (type and value) and a
+summary about the number of each type in the following format:
+`{argument type}: {argument value}`
+Print each argument description on a new line. At the end print a tally with counts for each type in descending
+order, each on a new line in the following format:
+`{type} = {count}`
+If two types have the same count, use order of appearance.
+Do NOT print anything for types that do not appear in the list of arguments.
+Input
+You will receive a series of arguments passed to your function.
+Output
+Print on the console the type and value of each argument passed into your function.
+
+3. Fibonacci
+Write a JS function that when called, returns the next Fibonacci number, starting at 0, 1. Use a closure to keep the
+current number.
+Input
+There will be no input.
+Output
+The output must be a Fibonacci number and must be returned from the function.
+
+4. Breakfast Robot
+Your task is to write the management software for a breakfast chef robot - it needs to take orders, keep track of
+available ingredients and output an error if something’s wrong. The cooking instructions have already been
+installed, so your module needs to plug into the system and only take care of orders and ingredients. And since this
+is the future and food is printed with nano-particle beams, all ingredients are microelements - protein,
+carbohydrate, fat, and flavours. The library of recipes includes the following meals:
+ apple - made with 1 carbohydrate and 2 flavour
+ lemonade - made with 10 carbohydrate and 20 flavour
+ burger - made with 5 carbohydrate, 7 fat and 3 flavour
+ eggs - made with 5 protein, 1 fat and 1 flavour
+ turkey - made with 10 protein, 10 carbohydrate, 10 fat and 10 flavour
+The robot receives instructions either to restock the supply, cook a meal, or report statistics. The input consists of
+one of the following commands:
+ restock <microelement> <quantity> - increases the stored quantity of the given microelement
+ prepare <recipe> <quantity> - uses the available ingredients to prepare the given meal
+ report - returns information about the stored microelements, in the order described below, including zero
+elements
+The robot is equipped with quantum field storage, so it can hold an unlimited quantity of ingredients, but there is
+no guarantee there will be enough available to prepare a recipe, in which case an error message should be returned.
+Their availability is checked in the order in which they appear in the recipe, so the error should reflect the first
+requirement that was not met.
+Submit a closure that returns the management function. The management function takes one parameter.
+Input
+Instructions are passed as a string argument to your management function. It will be called several times per
+session, so the internal state must be preserved throughout the entire session.
+Output
+The return value of each operation is one of the following strings:
+ Success - when restocking or completing cooking without errors
+ Error: not enough <ingredient> in stock - when the robot couldn’t muster enough
+microelements
+ protein={qty} carbohydrate={qty} fat={qty} flavour={qty} - when a report is requested, in
+a single string
+Constraints
+ Recipes and ingredients in commands will always have valid names.
+
+5. Functional Sum
+Write a function that adds a number passed to it to an internal sum and returns itself with its internal sum set to
+the new value, so it can be chained functionally.
+Hint: Overwrite toString() of the function.
+Input
+Your function needs to take one numeric argument.
+Output
+Your function needs to return itself with an updated context.
+
+
+7. Simple Calculator
+Create a function calculator which returns an object that can modify the DOM. The returned object should support
+the following functionality:
+ init (selector1, selector2, resultSelector) - initializes the object to work with the elements
+corresponding to the supplied selectors.
+ add () - adds the numerical value of the element corresponding to selector1 to the numerical value of
+the element corresponding to selector2 and then writes the result in the element corresponding
+to resultSelector.  
+ subtract () - subtracts the numerical value of the element corresponding to selector1 from the
+numerical value of the element corresponding to selector2 and then writes the result in the element
+corresponding to resultSelector.
+Input
+There will be no input your function must only provide an object.
+Output
+Your function should return an object that meets the specified requirements.
+Constraints
+ All commands will always be valid, there will be no nonexistent or incorrect input.
+ All selectors will point to single textbox elements.
+ Use the given skeleton to solve this problem.
+
+8. Next Article
+Write a JS program that sequentially displays articles on a web page when the user clicks a button. You will receive
+an array of strings that will initialize the program. You need to return a function that keeps the initial array in its
+closure and every time it’s called, it takes the first element from the array and displays it on the web page, inside
+"article", in div with ID "content". If there are no more elements left, your function should do nothing.
+Your function will be called automatically, there is no need to attach any event listeners.
+Input
+You will receive an array of strings.
+Output
+Return a function that sequentially displays the array elements on the web page
+
+
+
+9. Task Manager
+Use the index.html and app.js files to solve this problem. You have NO permission to directly change the given
+HTML code (index.html file).
+Your task
+Write the missing JavaScript code to make the Task Manager Functionality works as follows:
+When the [Add] button is clicked, first you need to validate the inputs. If any of the input fields are empty, the
+function doesn’t make anything.
+After validating the input fields, you need to add the new task (article) in the "Open" section.
+The HTML structure looks like this:
+The article should have two buttons "Start" and "Delete". Be careful to set the classes for the buttons and the
+parent-div.
+When the [Start] button is clicked, you need to move the Task in the section "In Progress". Be careful with the
+buttons! The HTML structure looks like this:
+When the [Delete] button is clicked, the Task (whole article) should be removed from the HTML.
+After clicking the [Finish] button, the Task will be completed, and you should move the article to the section
+"Complete". The buttons with their parent div-element should be removed.
