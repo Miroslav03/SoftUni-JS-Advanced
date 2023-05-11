@@ -1,0 +1,26 @@
+{
+  "name": "js-advanced",
+  "version": "1.0.0",
+  "description": "",
+  "main": "demo.js",
+  "scripts": {
+    "test": "mocha checkforSymmetry.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miroslav03/JS-Advanced.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miroslav03/JS-Advanced/issues"
+  },
+  "homepage": "https://github.com/Miroslav03/JS-Advanced#readme",
+  "dependencies": {
+    "chai": "^4.3.7"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}

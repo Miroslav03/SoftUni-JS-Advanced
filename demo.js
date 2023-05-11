@@ -1,11 +1,11 @@
-function sum(a, b) {
+const { expect } = require('chai')
 
-    const sum = a + b;
-
-
-    return {
-        sum
-    }
+function sum(a,b){
+    return a+b;
 }
 
-console.log(sum(1,2).sum)
+describe("Main tests", function (){
+    it('works with hole numbers',()=>{
+        expect(sum(3,4)).to.equal(7)
+    })
+})
