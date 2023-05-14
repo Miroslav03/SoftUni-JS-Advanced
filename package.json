@@ -4,7 +4,7 @@
   "description": "",
   "main": "demo.js",
   "scripts": {
-    "test": "mocha addSubtract.js"
+    "test": "mocha charLookup.js"
   },
   "repository": {
     "type": "git",
