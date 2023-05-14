@@ -4,7 +4,7 @@
   "description": "",
   "main": "demo.js",
   "scripts": {
-    "test": "mocha charLookup.js"
+    "test": "mocha mathEnforcer.js"
   },
   "repository": {
     "type": "git",
