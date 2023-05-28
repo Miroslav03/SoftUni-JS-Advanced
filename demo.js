@@ -1,7 +1,10 @@
-let  arr = [3]
-index = 2
-let arr1 = arr.slice(0, index)
-let arr2 = arr.slice(index+1)
-arr = arr1.concat(arr2)
 
-console.log(arr);
+let name = undefined
+let age = 19;
+
+
+
+if ((name || age) ==( undefined || null || '')) {
+    throw new Error("Invalid input!");
+
+}
