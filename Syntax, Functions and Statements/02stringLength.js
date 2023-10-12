@@ -1,8 +1,8 @@
-function strignLength(string1,string2,string3){
-
-    const string = string1 + string2 + string3
-
-    console.log(string.length);
-    console.log(Math.floor(string.length/3));
-
-}strignLength('chocolate', 'ice cream', 'cake')
+function stringLength(stirng1,string2,string3){
+    const sum = stirng1.length + string2.length + string3.length;
+    const averageLength = Math.floor(sum/3);
+    console.log(sum);
+    console.log(averageLength);
+    
+}
+stringLength('chocolate', 'ice cream', 'cake')

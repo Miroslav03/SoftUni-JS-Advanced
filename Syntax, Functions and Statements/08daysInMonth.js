@@ -1,6 +1,7 @@
-function daysInMonth(month,year) {
+function daysInAMonth(month, year) {
 
-    return console.log(new Date(year, month, 0).getDate())
-
+    const date = new Date(year, month , 0)
+    const days = date.getDate()
+    console.log(days);
 }
-daysInMonth(2, 2021)
+daysInAMonth(1, 2012)

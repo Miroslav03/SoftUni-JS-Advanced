@@ -1,7 +1,5 @@
-function echoFunction(string){
-
+function echo(string){
     console.log(string.length);
     console.log(string);
-
 }
-echoFunction('Hello, JavaScript!')
+echo('Hello, JavaScript!')

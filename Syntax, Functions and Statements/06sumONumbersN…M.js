@@ -1,15 +1,14 @@
-function sumOfNumbers(n1,n2){
+function sumOfNumbers(n, m) {
 
-    const firstNum = Number(n1)
-    const secondNum = Number(n2) 
-    let sum = 0 
+    let sum = 0;
+    n = Number(n);
+    m = Number(m);
 
-    for (let i = firstNum; i <= secondNum; i++) {
-        const number = i
-        sum+= number
+    for (let i = n; i <= m; i++) {
+        sum += Number(i);
     }
 
-    console.log(sum)
+    return console.log(sum);
 
 }
-sumOfNumbers('1', '5' )
+sumOfNumbers('1.2', '1.3')

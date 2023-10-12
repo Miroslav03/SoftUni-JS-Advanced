@@ -1,9 +1,8 @@
-function squareOfStars(n){
+function squareOfStars(num) {
+    for (let i = 0; i < num; i++) {
+        console.log('* '.repeat(num));
 
-    for (let i = 0; i < n;i++) {
-        const repeat = (` *`.repeat(n))
-        console.log(repeat);
-        
     }
 
-}squareOfStars(3)
+}
+squareOfStars()

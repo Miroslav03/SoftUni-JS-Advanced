@@ -1,37 +1,32 @@
-function mathOperations(num1,num2,operator){
+function mathOperation(num1,num2,string){
 
-    
-
-    switch (operator) {
-
-
-        case `+`:{
+    switch (string) {
+        case '+':{
             console.log(num1+num2);
             break;
         }
-        case `-`:{
+        case '-':{
             console.log(num1-num2);
             break;
         }
-        case `*`:{
+        case '*':{
             console.log(num1*num2);
             break;
         }
-        case `/`:{
+        case '/':{
             console.log(num1/num2);
             break;
         }
-        case `%`:{
+        case '%':{
             console.log(num1%num2);
             break;
         }
-        case `**`:{
+        case '**':{
             console.log(num1**num2);
             break;
         }
-
     }
 
-
 }
-mathOperations(5,6,`**`)
+mathOperation(5, 6, '+')
+mathOperation(3, 5.5, '*')

@@ -22,7 +22,7 @@ function company() {
             }
 
             if (salary < 0) {
-                throw new Error("Invalid input!");
+                throw new Error("Invalid input!");      
 
             }
 

@@ -1,10 +1,6 @@
+function largestNumber(n1,n2,n3){
 
-let name = undefined
-let age = 19;
-
-
-
-if ((name || age) ==( undefined || null || '')) {
-    throw new Error("Invalid input!");
+    console.log(`The largest number is ${Math.max(n1,n2,n3)}.`);
 
 }
+largestNumber(5, -3, 16)

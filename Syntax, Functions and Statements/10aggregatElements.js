@@ -1,36 +1,17 @@
-function aggregateElements(array){
-
-    function sumArr(array){
-        let sum  = 0
-        for (let i = 0; i < array.length; i++) {
-            const element = array[i];
-            sum+=element
-        }
-        return sum
-    }   
-
-    function inverseValue(array) {
-        let sum = 0
-        for (let i = 0; i < array.length; i++) {
-            const element = 1/array[i];
-            sum+=element
-        }
-        return sum
+function aggregatElements(arr) {
+    let sum = 0;
+    let inverseSum = 0;
+    let string = '';
+    for (let i = 0; i < arr.length; i++) {
+        const element = arr[i];
+        sum += element;
+        inverseSum += 1 / element
+        string += String(element);
     }
-
-    function concatenateValues(array){
-        let string = ``
-        for (let i = 0; i < array.length; i++) {
-            const element = String(array[i]);
-            string+=element;
-        }
-        return string
-    }
-
-    console.log(sumArr(array))
-    console.log(inverseValue(array)) 
-    console.log(concatenateValues(array))
-
+    console.log(sum);
+    console.log(inverseSum);
+    console.log(string);
 
 }
-aggregateElements([1, 2, 3])
+aggregatElements([1, 2, 3])
+aggregatElements([2, 4, 8, 16])
