@@ -1,16 +1,17 @@
 function negativePositive(array) {
-    const finalArr = []
 
+    const arr = []
     for (let i = 0; i < array.length; i++) {
         const element = array[i];
-        if (element >= 0) {
-            finalArr.push(element)
+        if (element < 0) {
+            arr.unshift(element)
         } else {
-            finalArr.unshift(element)
+            arr.push(element)
         }
-
+        
     }
-    console.log(finalArr.join(`\n`));
+
+    console.log(arr);
 
 }
 negativePositive([7, -2, 8, 9])

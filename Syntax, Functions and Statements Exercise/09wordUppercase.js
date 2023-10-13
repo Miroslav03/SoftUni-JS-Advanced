@@ -1,18 +1,11 @@
-function wordUppercase(string){
-
-    const regex = /[a-zA-Z0-9]+/g
-    const matches = string.match(regex)
+function wordUppercase(string) {
+    const martched = string.match(/\w+/g)
+    
     const finalArr = []
-
-    for (let i = 0; i < matches.length; i++) {
-        let element = matches[i];
-        element = element.toUpperCase()
-        finalArr.push(element)
+    for (let i = 0; i < martched.length; i++) {
+        const element = martched[i].toUpperCase();
+        finalArr.push(element);
     }
-
-    console.log(finalArr.join(`, `));
-
-
+    console.log(finalArr.join(', '))
 }
-wordUppercase('Hi, how1 are you?')
-wordUppercase('hello')
+wordUppercase('Functions in JS can be nested, i.e. hold other functions')

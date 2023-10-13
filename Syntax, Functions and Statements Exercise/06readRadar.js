@@ -1,66 +1,38 @@
-function roadRadar(km,name){
-
-    let speedLimit  = 0 
-    let flag = true
-
-    switch (name) {
-        case `motorway`:{
-            speedLimit = 130
-            if(km>speedLimit){
-                flag = true
-            }else{
-                flag = false
-            }
+function roadRadar(speed, place) {
+    let speedLimit = undefined;
+    let status = undefined;
+    switch (place) {
+        case 'motorway': {
+            speedLimit = 130;
             break;
         }
-        case `interstate`:{
-            speedLimit= 90;
-            if(km>speedLimit){
-                flag = true
-            }else{
-                flag = false
-            }
+        case 'interstate': {
+            speedLimit = 90;
             break;
         }
-        case `city`:{
-            speedLimit= 50;
-            if(km>speedLimit){
-                flag = true
-            }else{
-                flag = false
-            }
+        case 'city': {
+            speedLimit = 50;
             break;
         }
-        case `residential`:{
-            speedLimit= 20;
-            if(km>speedLimit){
-                flag = true
-            }else{
-                flag = false
-            }
+        case 'residential': {
+            speedLimit = 20;
             break;
-        }    
-            
+        }
     }
 
-    let status = ``
-
-    if(!flag){
-        console.log(`Driving ${km} km/h in a ${speedLimit} zone`);
-    }else{
-        let kmOver = km-speedLimit
-        if(kmOver<=20){
-            status = `speeding`
-        }else if(kmOver<=40){
-            status = `excessive speeding`
+    if (speed <= speedLimit) {
+        console.log(`Driving ${speed} km/h in a ${speedLimit} zone`);
+    } else if (speed > speedLimit) {
+        if ((speed - speedLimit) <= 20) {
+            status = 'speeding'
+        } else if ((speed - speedLimit) > 20 && (speed - speedLimit) <= 40) {
+            status = 'excessive speeding'
         }else{
-            status = `reckless driving`
+            status = 'reckless driving'
         }
-        console.log(`The speed is ${km-speedLimit} km/h faster than the allowed speed of ${speedLimit} - ${status}`);
+        console.log(`The speed is ${speed - speedLimit} km/h faster than the allowed speed of ${speedLimit} - ${status}`);
     }
-
 
 
 }
-roadRadar(40,
-    `city`)
+roadRadar(200, 'motorway')

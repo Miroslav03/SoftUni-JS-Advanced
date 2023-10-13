@@ -1,15 +1,17 @@
-function greatestCommonDivisor(n1,n2){
+function greatestCommonDivisor(num1, num2) {
 
-    const biggerNumber = Math.max(n1,n2)
-    let greatestCommonDivisor = 0
-    for (let i = 1; i <= biggerNumber; i++) {
-        const currentNumber = i;
-        if(n1%currentNumber==0&&n2%currentNumber==0){
-            greatestCommonDivisor = i
+    const bigger = Math.max(num1, num2);
+    let greatesDivisor = undefined;
+
+    for (let i = 1; i <= bigger; i++) {
+        const element = i;
+        if (num1 % element == 0 && num2 % element == 0) {
+            greatesDivisor = element;
         }
     }
 
-    return console.log(greatestCommonDivisor);
+    console.log(greatesDivisor);
 
 }
+
 greatestCommonDivisor(2154, 458)

@@ -1,14 +1,25 @@
-function timeToWalk(steps,length,speed){
+function timeToWalk(steps, length, speed) {
 
-    const totalMeters = steps*length
-    const metersPersSecond = speed/3.6
-    const restTime = Math.floor(totalMeters/500)*60
-    const totalTime = restTime + totalMeters/metersPersSecond
+    const totalRoad = (steps * length)//2400
+    const metersInSec = speed / 3.6;
+    const timeInSec = totalRoad / metersInSec;
+    const restInMin = Math.floor(totalRoad / 500)
 
-    const hours = Math.floor(totalTime/3600)
-    const minutes = Math.floor(totalTime/60)
-    const seconds = Math.round(totalTime%60)
-
-    console.log(`${hours < 10 ? "0":""}${hours}:${minutes < 10 ? "0":""}${minutes}:${seconds < 10 ? "0":""}${seconds}`);
+    let totalMin = Math.floor(timeInSec / 60) + restInMin;
+    let totalHours = Math.floor(totalMin / 60);
+    let finalMin = totalMin % 60
+    let finalSeconds = Math.ceil(timeInSec - Math.floor(timeInSec / 60)*60)
+    if(totalHours <=9){
+        totalHours = `0${totalHours}`
+    }
+    if(finalMin <=9){
+        finalMin = `0${finalMin}`
+    }
+    if(finalSeconds <=9){
+        finalSeconds = `0${finalSeconds}`
+    }
+    
+        console.log(`${totalHours}:${finalMin}:${finalSeconds}`);
+    
 }
 timeToWalk(4000, 0.60, 5)

@@ -1,16 +1,22 @@
-function lastKNumers(n,k){
+function lastKNumers(n, k) {
 
-    const arr = [1]
-    let finalSum = 0 
-
-    for (let i = 0; i < n-1; i++) {
-        const elements = arr.slice(-k)
-        finalSum = elements.reduce((result,x) => result+x, 0)
-        arr.push(finalSum)
+    const arr = [1];
+    const finalArr = [1]
+    let value = 0;
+    for (let i = 0; i < n; i++) {
+        value = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        finalArr.push(value);
+        arr.push(value);
+        if (arr.length > k) {
+            arr.shift()
+        }
+        value = 0;
     }
-
-    return arr
-
+    finalArr.pop()
+    return finalArr
 }
-console.log(lastKNumers(6, 3))
+
+
+
+lastKNumers(6, 3)
 lastKNumers(8, 2)
