@@ -1,10 +1,9 @@
 function rotateArr(array,n){
 
     for (let i = 0; i < n; i++) {
-        const lastElement = array.pop()
+        const lastElement = array.pop();
         array.unshift(lastElement)
     }
-
     console.log(array.join(' '));
 }
 rotateArr(['1', 

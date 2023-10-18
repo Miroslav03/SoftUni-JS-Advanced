@@ -1,17 +1,15 @@
 function extractSubset(array) {
-    let currentHighest = 0;
-    const finalArr = [];
+    let currentHighest = 0
+    const finalArr = []
     for (let i = 0; i < array.length; i++) {
         const element = array[i];
-        if (element >= currentHighest) {
-            currentHighest = element;
-            finalArr.push(element);
+        if(element >= currentHighest){
+            finalArr.push(element)
+            currentHighest = element
         }
     }
 
-    return finalArr;
-
-
+    return finalArr
 }
 extractSubset([1,
     3,
@@ -28,3 +26,10 @@ extractSubset([1,
     3,
     4]
 )
+extractSubset([20, 
+    3, 
+    2, 
+    15,
+    6, 
+    1]
+    )

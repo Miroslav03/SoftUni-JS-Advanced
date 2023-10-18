@@ -1,6 +1,10 @@
 function sortAnArrayByTwoCriteria(array) {
 
-    array.sort((a, b) => a.length - b.length || a.localeCompare(b))
+    array.sort((a, b) => {
+        const firstCriteria  = a.length - b.length
+        const secondCriteria = a.localeCompare(b)
+        return firstCriteria || secondCriteria
+    })
 
     console.log(array.join('\n'));
 

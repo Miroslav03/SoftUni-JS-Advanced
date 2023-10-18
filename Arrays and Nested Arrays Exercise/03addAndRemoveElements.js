@@ -1,20 +1,23 @@
 function addAndRemoveElements(array) {
     const finalArr = [];
-    let count = 0;
+    let start = 1;
+
     for (let i = 0; i < array.length; i++) {
-        const comand = array[i];
-        switch (comand) {
+        const command = array[i]
+        switch (command) {
             case 'add': {
-                count = i + 1;
-                finalArr.push(count);
+                finalArr.push(start)
+                start += 1
                 break;
             }
             case 'remove': {
-                finalArr.pop();
+                finalArr.pop()
+                start += 1
                 break;
             }
 
         }
+
     }
 
     if (finalArr.length == 0) {
@@ -23,21 +26,13 @@ function addAndRemoveElements(array) {
         console.log(finalArr.join(`\n`));
     }
 
+
 }
 addAndRemoveElements(['add',
     'add',
-    'add',
-    'add']
-)
-addAndRemoveElements(['add',
-    'add',
     'remove',
     'add',
     'add']
+
 )
-addAndRemoveElements(['remove',
-    'remove',
-    'remove']
-)
-//if empty print Empty
 
