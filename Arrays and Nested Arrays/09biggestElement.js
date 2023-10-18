@@ -9,17 +9,20 @@ function biggestElement(matrix) {
     let biggestNumber = matrix[0][0];
 
     for (let i = 0; i < matrix.length; i++) {
-        const matrixElement = matrix[i];
-        for (let j = 0; j < matrixElement.length; j++) {
-            const element = matrixElement[j];
-            if (element > biggestNumber) {
-                biggestNumber = element;
-            } else {
+        let row  = matrix[i]
+        for (let j = 0; j < row.length; j++) {
+            const element  = row[j]
+            if(element > biggestNumber){
+                biggestNumber = element
+            }else{
                 continue;
             }
+
         }
+
     }
-    return biggestNumber;
+    console.log(biggestNumber);
+
 }
 
 biggestElement([[20, 50, 10],
