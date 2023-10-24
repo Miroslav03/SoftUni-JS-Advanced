@@ -1,25 +1,27 @@
 function storeCatalogue(array) {
     const collection = {};
     for (let i = 0; i < array.length; i++) {
-        const [name, price] = array[i].split(' : ');
-        const firstLetter = name[0].toUpperCase();
-        if (collection.hasOwnProperty(firstLetter)) {
-            collection[firstLetter].push({ word: name, price: Number(price) })
-        } else {
+        const [name,price] = array[i].split(' : ');
+        const firstLetter = name[0]
+        if(!collection.hasOwnProperty(firstLetter)){
             collection[firstLetter] = []
-            collection[firstLetter].push({ word: name, price: Number(price) })
+            collection[firstLetter].push(`${name}: ${price}`)
+        }else{
+            collection[firstLetter].push(`${name}: ${price}`)
+        }
+    }   
+    const sortedKeys = Object.keys(collection).sort((a,b) => a.localeCompare(b))
+   
+
+    for (const key of sortedKeys) {
+        let arr = collection[key]
+        arr = arr.sort((a,b) => a.localeCompare(b))
+        console.log(key);
+        for (const name of arr) {
+            console.log(`  ${name}`);
         }
     }
-
-    const sortedCollection = Object.keys(collection).sort((a, b) => a.localeCompare(b))
-
-    for (const el of sortedCollection) {
-        console.log(el)
-        const element = collection[el].sort((a, b) => (a.word).localeCompare(b.word));
-        for (let i = 0; i < element.length; i++) {
-            console.log(`  ${element[i].word}: ${element[i].price}`)
-        }
-    }
+    
 
 }
 storeCatalogue(['Appricot : 20.4',

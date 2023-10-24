@@ -1,21 +1,12 @@
 function townsToJSON(array) {
-    const collection =[];
-
+    const collection = [];
     for (let i = 1; i < array.length; i++) {
-        let [name,latitude,longitude] = array[i].split(' | ');
-        name = name.split('| ').filter(a => a)
-        name = name[0]
-
-        latitude = Math.round(Number(latitude)*100)/100
-
-        longitude = longitude.split(' |').filter(a => a)
-        longitude = Math.round(Number(longitude[0])*100)/100
-        
-       collection.push({Town:name,Latitude:latitude,Longitude:longitude})
+        let [Town, Latitude, Longitude] = array[i].split('|').filter((a) => a != '').map((a) => a.trim());
+        Latitude = Number(Number(Latitude).toFixed(2))
+        Longitude = Number(Number(Longitude).toFixed(2))
+        collection.push({ Town, Latitude, Longitude })
     }
-
     console.log(JSON.stringify(collection));
-
 }
 townsToJSON(['| Town | Latitude | Longitude |',
     '| Sofia | 42.696552 | 23.32601 |',
