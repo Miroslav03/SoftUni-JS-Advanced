@@ -1,47 +1,51 @@
 function carFactory(car) {
 
-    function createEngine(hp) {
-        const engine = {};
-        if (hp <= 90) {
-            engine.power = 90;
-            engine.volume = 1800;
-        } else if (hp <= 120) {
-            engine.power = 120;
-            engine.volume = 2400;
-        } else if (hp <= 200) {
-            engine.power = 200;
-            engine.volume = 3500;
+    function engineMaker(car) {
+        const power = car.power
+        if (power <= 90) {
+            return { power: 90, volume: 1800 }
+        } else if (power > 90 && power <= 120) {
+            return { power: 120, volume: 2400 }
+        } else {
+            return { power: 200, volume: 3500 }
+        }
+    }
+
+    function carriageMaker(car) {
+        return {
+            type: car.carriage,
+            color: car.color
         }
 
-        return engine;
     }
 
-    function createCarriage(color, type) {
-        const carriage = {};
-        carriage.type = type;
-        carriage.color = color;
-
-        return carriage;
-    }
-
-    function createWheels(wheelsize) {
-        const wheels = ['', '', '', ''];
-        if (wheelsize % 2 == 0) {
-            wheelsize--
+    function wheelsMaker(car) {
+        let wheelSize = car.wheelsize
+        if (wheelSize % 2 == 0) {
+            wheelSize--
         }
-        wheels.fill(wheelsize)
+        const arr = Array(4).fill(wheelSize)
+        return arr
+    }
 
-        return wheels;
+    const engine = engineMaker(car)
+    const carriage = carriageMaker(car)
+    const wheels = wheelsMaker(car)
+
+    console.log({
+        model: car.model,
+        engine: engine,
+        carriage: carriage,
+        wheels: wheels
+    });
+    return {
+        model: car.model,
+        engine: engine,
+        carriage: carriage,
+        wheels: wheels
     }
     
-    return car = {
-        model:car.model,
-        engine:createEngine(car.power),
-        carriage:createCarriage(car.color,car.carriage),
-        wheels:createWheels(car.wheelsize)
-        
-    }
-    
+
 }
 console.log(carFactory({
     model: 'Opel Vectra',

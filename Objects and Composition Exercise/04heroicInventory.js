@@ -1,26 +1,23 @@
 function heroicInventory(array) {
+ 
     const finalArr = [];
 
-    function createHero(name, level, arrItems) {
-        const hero = {};
-        hero.name = name;
-        hero.level = level;
-        hero.items = arrItems;
-        return hero;
-    }
-
     for (let i = 0; i < array.length; i++) {
-        let [name, level, items] = array[i].split(' / ');
-
-        level = Number(level);
-
-        items =  items ? items.split(', ') : []
-
-        finalArr.push(createHero(name,level,items))
+        let [name,level,items] = array[i].split(' / ');
+        level = Number(level)
+        if(items != undefined){
+            items = items.split(', ')
+        }else{
+            items = []
+        }
+        debugger
+        finalArr.push({name,level,items})
     }
-    console.log(JSON.stringify(finalArr));
-}
 
+    console.log(JSON.stringify(finalArr));
+
+
+}
 heroicInventory(['Isacc / 25 / BarrelVest, DestructionSword',
     'Derek / 12 / BarrelVest, DestructionSword',
     'Hes / 1 / Desolator, Sentinel, Antara']

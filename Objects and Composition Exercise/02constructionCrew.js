@@ -1,13 +1,17 @@
 function constructionCrew(worker) {
-    let neededWater = 0;
-
-    if(worker.dizziness==true){
-        neededWater = worker.weight*0.1;
-        worker.levelOfHydrated +=neededWater;
-        worker.dizziness = false;
+   
+    function checkHydration(worker){
+        if(worker.dizziness == true){
+            worker.levelOfHydrated += (worker.weight)*(worker.experience)*0.1;
+            worker.dizziness = false;
+            
+        }
+        return worker
     }
 
-    return worker;
+
+    const finalWorker  = checkHydration(worker)
+    return finalWorker;
 }
 constructionCrew({
     weight: 80,
@@ -16,17 +20,8 @@ constructionCrew({
     dizziness: true
 }
 )
-constructionCrew({
-    weight: 120,
-    experience: 20,
-    levelOfHydrated: 200,
-    dizziness: true
-}
-)
-constructionCrew({
-    weight: 95,
-    experience: 3,
+let worker = result({ weight: 80,
+    experience: 1,
     levelOfHydrated: 0,
-    dizziness: false
-}
-)
+    dizziness: true }
+);

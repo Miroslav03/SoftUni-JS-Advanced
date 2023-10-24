@@ -1,11 +1,18 @@
-function calorieObject(array){
+function calorieObject(array) {
     const collection = {};
-    
-    for (let i = 0; i < array.length; i+=2) {
-        const name = array[i];
-        collection[name] = Number(array[i+1])
-    }
 
+    for (let i = 0; i < array.length; i += 2) {
+        const name = array[i];
+        let calorie = undefined;
+        if (i == 0) {
+            calorie = Number(array[i + 1])
+
+        } else {
+            calorie = Number(array[i + 1])
+        }
+        collection[name] = calorie
+
+    }
 
     console.log(collection);
 
