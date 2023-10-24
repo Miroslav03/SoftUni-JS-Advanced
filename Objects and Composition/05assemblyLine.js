@@ -1,25 +1,26 @@
 function createAssemblyLine() {
 
     return {
-        hasClima: (car) => {
+        hasClima(car) {
             car.temp = 21;
             car.tempSettings = 21;
             car.adjustTemp = () => {
                 if (car.temp < car.tempSettings) {
                     car.temp++
-                } else if (car.temp > car.tempSettings) {
+                } else {
                     car.temp--
                 }
             }
         },
-        hasAudio: (car) => {
-            car.currentTrack = { name: '', artist: '' }
+        hasAudio(car) {
+            car.currentTrack = { name: null, artist: null };
             car.nowPlaying = () => {
-                if (car.currentTrack != null) {
-                    console.log(`Now playing '${car.currentTrack.name}' by ${car.currentTrack.artist}`)
+                if (car.currentTrack.name != null && car.currentTrack.artist != null) {
+                    console.log(`Now playing '${car.currentTrack.name}' by ${car.currentTrack.artist}`);
                 }
             }
-        },
+        }
+        ,
         hasParktronic: (car) => {
             car.checkDistance = (distance) => {
                 if (distance < 0.1) {
@@ -33,7 +34,6 @@ function createAssemblyLine() {
         }
     }
 }
-
 const assemblyLine = createAssemblyLine();
 
 const myCar = {

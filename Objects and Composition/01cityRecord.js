@@ -1,13 +1,12 @@
 function cityRecords(name,population,treasury){
 
-    const city  = {
+    const city = {
         name,
         population,
-        treasury,
+        treasury
     }
 
-    return city;
-
+    return city
 }
 cityRecords('Tortuga',
 7000,

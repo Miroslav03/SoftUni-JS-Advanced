@@ -1,21 +1,18 @@
 function townPopulation(array) {
-    const townList = {};
-
+    const cities = {}
     for (let i = 0; i < array.length; i++) {
-        const [townName,population] = array[i].split(` <-> `);
-        
-        if(townList.hasOwnProperty(townName)){
-            townList[townName] += Number(population)
+        let [city,population] = array[i].split(' <-> ');
+        population = Number(population)
+        if(cities.hasOwnProperty(city)){
+            cities[city]+= population
         }else{
-            townList[townName] = Number(population)
-            
+            cities[city] = population
         }
     }
-
-    for (const [townName,population] of Object.entries(townList)) {
-            console.log(`${townName} : ${population}`);
+    
+    for (const [city,population] of Object.entries(cities)) {
+        console.log(`${city} : ${population}`);
     }
-
 }
 townPopulation(['Sofia <-> 1200000',
     'Montana <-> 20000',
@@ -23,6 +20,7 @@ townPopulation(['Sofia <-> 1200000',
     'Washington <-> 2345000',
     'Las Vegas <-> 1000000']
 )
+console.log(`----------------------`);
 townPopulation(['Istanbul <-> 100000',
     'Honk Kong <-> 2100004',
     'Jerusalem <-> 2352344',

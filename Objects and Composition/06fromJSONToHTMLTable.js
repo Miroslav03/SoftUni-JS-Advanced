@@ -1,22 +1,39 @@
 function fromJSONToHTMLTable(input) {
+    let finalStr = '<table>'
+    const arr = JSON.parse(input)
+    const keys = Object.keys(arr[0]).map((key) => key.trim())
+    let currentString = ''
+    for (let i = 0; i < keys.length; i++) {
+        currentString += `<th>${keys[i]}</th>`
 
-    const arr = []
-    const data = JSON.parse(input)
-
-    arr.push(`<table>`);
-
-    const keys = Object.keys(data[0])
-    arr.push(`   <tr>${keys.map(a => `<th>${escape(a)}</th>`).join(``)}</tr>   `);
-
-    for (const obj of data) {
-        const values = Object.values(obj)
-        arr.push(`   <tr>${values.map(a => `<td>${escape(a)}</td>`).join(``)}</tr>   `);
-       
     }
-    function escape(value){
-        return value.toString().replace(`<`,`&lt;`).replace(`>`,`&gt;`)
+    finalStr += '\n    <tr>' + currentString
+    finalStr += '</tr>'
+    currentString = ''
+    for (let i = 0; i < arr.length; i++) {
+        const obj = arr[i];
+        for (const key in obj) {
+            currentString += `<td>${obj[key]}</td>`
+        }
+        finalStr += '\n    <tr>' + currentString
+        finalStr += '</tr>'
+        currentString = ''
     }
-    arr.push(`</table>`);
-
-    return arr.join(`\n`)
+    finalStr += '\n</table>'
+    console.log(finalStr);
 }
+fromJSONToHTMLTable(`[{"Name":"Pesho",
+"Score":4,
+" Grade":8},
+{"Name":"Gosho",
+"Score":5,
+" Grade":8},
+{"Name":"Angel",
+"Score":5.50,
+" Grade":10}]`
+)
+fromJSONToHTMLTable(`[{"Name":"Stamat",
+"Score":5.5},
+{"Name":"Rumen",
+"Score":6}]`
+)
