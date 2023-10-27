@@ -1,52 +1,37 @@
-  function solve() {
-    const wordCase = document.getElementById(`naming-convention`).value
-    const text = document.getElementById('text').value
-
-    let finalWord = ``
-    switch (wordCase) {
-      case 'Camel Case': {
-        finalWord = ``
-        const words = text.split(` `).map(a => a.toLowerCase())
-        const firstWord = words.shift()
-        finalWord = firstWord
-        for (let i = 0; i < words.length; i++) {
-          const element = words[i];
-          let currentWord = ``
-          for (let j = 0; j < element.length; j++) {
-            let letter = element[j];
-            if (j == 0) {
-              letter = letter.toUpperCase()
-            }
-            currentWord += letter
-          }
-          finalWord += currentWord
-        }
-
-        break;
+function solve() {
+  const text = document.getElementById('text').value
+  const convention = document.getElementById('naming-convention').value
+  const result = document.getElementById('result-container')
+  let finalWord = ''
+  switch (convention) {
+    case 'Camel Case': {
+      const arr = text.split(' ')
+      finalWord = arr[0].toLowerCase()
+      for (let i = 1; i < arr.length; i++) {
+        const element = arr[i].toLowerCase();
+        const firstPart = element.slice(0, 1).toUpperCase()
+        const secondPart = element.slice(1).toLowerCase()
+        const string = firstPart + secondPart
+        finalWord += string
       }
-      case 'Pascal Case': {
-        finalWord = ``
-        const words = text.split(` `).map(a => a.toLowerCase())
-        for (let i = 0; i < words.length; i++) {
-          const element = words[i];
-          let currentWord = ``
-          for (let j = 0; j < element.length; j++) {
-            let letter = element[j];
-            if (j == 0) {
-              letter = letter.toUpperCase()
-            }
-            currentWord += letter
-          }
-          finalWord += currentWord
-
-        }
-        break;
-      }
-      default: {
-        finalWord = `Error!`
-      }
+      break;
     }
-
-    document.getElementById(`result`).textContent = finalWord
-
+    case 'Pascal Case': {
+      const arr = text.split(' ')
+      for (let i = 0; i < arr.length; i++) {
+        const element = arr[i].toLowerCase();
+        const firstPart = element.slice(0, 1).toUpperCase()
+        const secondPart = element.slice(1).toLowerCase()
+        const string = firstPart + secondPart
+        finalWord += string
+      }
+      break;
+    }
+    default: {
+      finalWord = 'Error!'
+    }
+      break;
   }
+  document.getElementById('result').textContent = finalWord
+}
+

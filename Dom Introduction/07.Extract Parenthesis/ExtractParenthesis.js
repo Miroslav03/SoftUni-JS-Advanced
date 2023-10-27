@@ -1,15 +1,11 @@
 function extract(content) {
-    const text = document.getElementById(content).textContent
-    const paattern = /\(([^)]+)\)/g
-    let Arr = []
-
-    let mathces = paattern.exec(text)
-
-    while (mathces) {
-        Arr.push(mathces[1])
-        mathces = paattern.exec(text)
-    }
+    const text = document.getElementById('content').textContent
+    const pattern = /\([^)]+\)/g
+    const finalArr = []
+    const arr = text.match(pattern).map(function (x){
+        const newSrtring  = x.split(/[\(\)]/g).join('')
+        return newSrtring
+    }).forEach((word) => finalArr.push(word));
     
-
-    return Arr.join("; ")
+    return finalArr.join('; ')
 }

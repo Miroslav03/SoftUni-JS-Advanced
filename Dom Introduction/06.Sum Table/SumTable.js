@@ -1,10 +1,14 @@
 function sumTable() {
-    const table  = document.querySelectorAll('table tr')
-    let totalSum = 0
-    for (let i = 1; i < table.length-1; i++) {
-        const elements = table[i].children;
-        const number = Number(elements[elements.length -1].textContent)
-        totalSum +=number
+    const arr = Array.from(document.querySelectorAll('tr'))
+    const sumValue = document.getElementById('sum');
+    let sum = 0;
+
+    for (let i = 1; i < arr.length; i++) {
+        const element = arr[i];
+        const tr = element.childNodes
+        const value = Number(tr[tr.length - 1].textContent)
+        sum+=value
     }
-    document.getElementById(`sum`).textContent = totalSum
+    sumValue.textContent = sum
+
 }

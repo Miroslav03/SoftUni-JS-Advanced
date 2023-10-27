@@ -1,10 +1,8 @@
 function colorize() {
-    let rows = document.querySelectorAll(`table tr`)
-    let index = 0
-    for (const row of rows) {
-        index++
-        if (index % 2 == 0) {
-            row.style.background = `teal`
-        }
+    const table = document.querySelectorAll('tr')
+    const arr = Array.from(table)
+
+    for (let i = 1; i < arr.length; i+=2) {
+        const element = arr[i].style.backgroundColor = 'teal';
     }
 }

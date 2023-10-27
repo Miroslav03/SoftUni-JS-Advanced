@@ -1,6 +1,19 @@
-function largestNumber(n1,n2,n3){
+function largestNumber(text, convension) {
 
-    console.log(`The largest number is ${Math.max(n1,n2,n3)}.`);
+    let arr = text.split(' ')
+    finalWord = ''
+    for (let i = 0; i < arr.length; i++) {
+        const element = arr[i];
+        const firstPart = element.slice(0, 1).toUpperCase()
+        const secondPart = element.slice(1).toLowerCase()
+        const string = firstPart + secondPart
+        finalWord += string
+
+    }
+    console.log(finalWord);
+
+
+    
 
 }
-largestNumber(5, -3, 16)
+largestNumber("this is an example", "Camel Case")
