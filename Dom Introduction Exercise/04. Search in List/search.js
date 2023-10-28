@@ -1,18 +1,15 @@
 function search() {
-   const searchBox = document.getElementById('searchText')
-   const list  = document.querySelectorAll('#towns li')
-   const townList  = Array.from(list)
-
-   let counter = 0;
-
-   for (let i = 0; i < townList.length; i++) {
-      const element = townList[i];
-      if(element.textContent.includes(searchBox.value)){
-         element.style.fontWeight = 'bold'
-         element.style.textDecoration = 'underline'
-         counter++
-      }     
-   }
-
-   document.querySelector('#result').textContent = `${counter} matches found` 
+      const searchBox = document.getElementById('searchText')//value
+      const result = document.getElementById('result')//textContgent
+      const elements = Array.from(document.querySelectorAll('li'))
+      let matches = 0;
+      for (let i = 0; i < elements.length; i++) {
+         const string = elements[i].textContent
+         if(string.includes(searchBox.value)){
+            matches++
+            elements[i].style.fontWeight = 'bold'
+            elements[i].style.textDecoration = 'underline'
+         }
+      }
+      result.textContent = `${matches} matches found`
 }

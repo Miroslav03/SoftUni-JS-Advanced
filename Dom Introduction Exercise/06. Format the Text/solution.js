@@ -1,19 +1,20 @@
 function solve() {
-  const input = document.getElementById('input').value
-  const output = document.getElementById('output')
+  const input = document.getElementById('input');
+  const output = document.getElementById('output');
 
-  const text = input.split(".").filter(e=>e.length>0)
 
-    for (i=0;i<text.length;i+=3){
-        const result = [];
-        for(j=0;j<3;j++){
-            if (text[i+j]){
-              result.push(text[i+j])
-            }    
-        }
-        const res = result.join(". ")+"."
-        output.innerHTML += `<p>${res}</p>`
-        
+
+  const newString = input.value.split('.').map((x) => x.trim()).filter((x) => x != '').filter((x) => x.length > 0)
+  for (let i = 0; i < newString.length; i += 3) {
+    const arr = []
+    for (let j = 0; j < 3; j++) {
+      if (newString[i + j]) {
+        arr.push(newString[i + j])
       }
+    }
+    const finalStr = arr.join('. ') + '.'
+    output.innerHTML += `<p>${finalStr}</p>`
+  }
+
 
 }
