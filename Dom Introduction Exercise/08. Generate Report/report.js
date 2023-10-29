@@ -1,25 +1,21 @@
 function generateReport() {
-    const output = document.getElementById('output')
-    const checkBoxes = Array.from(document.querySelectorAll('thead tr th input'))
-    const boxes = Array.from(document.querySelectorAll('tbody tr'))
-    let finalArr = []
-
-    for (let i = 0; i < boxes.length; i++) {
-        const element = boxes[i];
-        let result = {}
-        const arr = Array.from(element.querySelectorAll('td'))
-
-        for (let j = 0; j < arr.length; j++) {
-            const text = arr[j].textContent
-            if(checkBoxes[j].checked){
-                result[checkBoxes[j].name] = text
+    const output = document.getElementById('output');
+    const checkBoxes = document.querySelectorAll('thead tr th input');
+    const rows = Array.from(document.querySelectorAll('tbody tr'));
+    const dataArr = [];
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const dataObj = {};
+        const tdArr = Array.from(row.querySelectorAll('td'));
+        for (let j = 0; j < tdArr.length; j++) {
+            const element = tdArr[j];
+            if (checkBoxes[j].checked) {
+                dataObj[checkBoxes[j].name] = element.textContent
             }
-            
         }
-        finalArr.push(result)
-       
+        dataArr.push(dataObj)
     }
-    output.value = JSON.stringify(finalArr)
+    output.textContent = JSON.stringify(dataArr)
 }
 
 

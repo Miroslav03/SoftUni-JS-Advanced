@@ -1,20 +1,69 @@
 function largestNumber() {
+  const arr = ["Mikes - Steve 1000, Ivan 200, Paul 800", "Fleet - Maria 850, Janet 650", `Mikes - Miro 1000`]
+  const allResturants = {}
 
-    const string = `JavaScript, often abbreviated as JS, is a high-level, interpreted programming language. It is a language which is also characterized as dynamic, weakly typed, prototype-based and multi-paradigm.
-    JavaScript, often abbreviated as JS, is a high-level, interpreted programming language. It is a language which is also characterized as dynamic, weakly typed, prototype-based and multi-paradigm. Alongside HTML and CSS, JavaScript is one of the three core technologies of the World Wide Web. JavaScript enables interactive web pages and thus is an essential part of web applications. The vast majority of websites use it, and all major web browsers have a dedicated JavaScript engine to execute it. As a multi-paradigm language, JavaScript supports event-driven, functional, and imperative (including object-oriented and prototype-based) programming styles. 
-    `
-    const newString = string.split('.').map((x) => x.trim()).filter((x) => x != '');
-    for (let i = 0; i < newString.length; i += 3) {
-      const arr = []
-      for (let j = 0; j < 3; j++) {
-        if(newString[i+j]){
-            arr.push(newString[i+j])
-
+  for (let i = 0; i < arr.length; i++) {
+    let [resturant, workersString] = arr[i].split(' - ');
+    const workers = workersString.split(', ')
+    if (!allResturants.hasOwnProperty(resturant)) {
+      allResturants[resturant] = { workers, average: undefined, bestWorker: undefined, bestSalary: undefined }
+      let bestWorker = undefined
+      let bestSalary = 0
+      let average = 0
+      for (const workerProfile of workers) {
+        let [worker, salary] = workerProfile.split(' ')
+        salary = Number(salary)
+        average += salary
+        if (bestSalary < salary) {
+          bestSalary = salary
+          bestWorker = worker
         }
       }
-      const final = arr.join('. ') + '.'
-      debugger
+      allResturants[resturant].average = (average / workers.length).toFixed(2)
+      allResturants[resturant].bestWorker = bestWorker
+      allResturants[resturant].bestSalary = bestSalary.toFixed(2)
+    } else {
+      allResturants[resturant].workers = allResturants[resturant].workers.concat(workers)
+      let bestWorker = undefined
+      let bestSalary = 0
+      let average = 0
+      allResturants[resturant].average = undefined;
+      allResturants[resturant].bestSalary = undefined;
+      allResturants[resturant].bestWorker = undefined;
+      for (const workerProfile of allResturants[resturant].workers) {
+        let [worker, salary] = workerProfile.split(' ')
+        salary = Number(salary)
+        average += salary
+        if (bestSalary < salary) {
+          bestSalary = salary
+          bestWorker = worker
+        }
+      }
+      allResturants[resturant].average = (average / allResturants[resturant].workers.length).toFixed(2)
+      allResturants[resturant].bestWorker = bestWorker
+      allResturants[resturant].bestSalary = bestSalary.toFixed(2)
     }
+  }
+
+  let sortedEntries = Object.entries(allResturants).sort((a, b) => b[1].average - a[1].average)
+
+  const bestResturantText = `Name: ${sortedEntries[0][0]} Average Salary: ${sortedEntries[0][1].average} Best Salary: ${sortedEntries[0][1].bestSalary}`
+  console.log(bestResturantText);
+
+  const bestResturantWorkers = sortedEntries[0][1].workers.sort((a, b) => Number(b.split(' ')[1]) - Number(a.split(' ')[1]))
+  let workersString = '';
+  const finalArr = []
+
+  for (const employe of bestResturantWorkers) {
+    const [worker, salary] = employe.split(' ')
+    finalArr.push(`Name: ${worker} With Salary: ${salary}`)
+
+  }
+
+  console.log(finalArr.join(' '));
+
+
+
 
 }
 largestNumber("this is an example", "Camel Case")

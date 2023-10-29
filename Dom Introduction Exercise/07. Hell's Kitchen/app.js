@@ -1,78 +1,70 @@
 function solve() {
    document.querySelector('#btnSend').addEventListener('click', onClick);
 
-   const input = document.querySelector('#inputs>textarea');
-   const bestResturants = document.querySelector('#bestRestaurant>p');
-   const bestWorkers = document.querySelector('#workers>p');
+   const textArea = document.querySelector('textarea')
+   const bestResturant = Array.from(document.querySelectorAll('p'))[0]
+   const bestWorker = Array.from(document.querySelectorAll('p'))[1]
 
    function onClick() {
-      const array = JSON.parse(input.value)
-      const resturants = {}
-      for (let i = 0; i < array.length; i++) {
-         const element = array[i];
-         const resturantName = element.split(' - ')[0]
-         const workersArr = element.split(' - ')[1].split(', ')
-         const avergeSalary = 0
-         if (resturants.hasOwnProperty(resturantName)) {
-
-            for (let i = 0; i < workersArr.length; i++) {
-               const workerWithSalary = workersArr[i].split(' ');
-               const workerName = workerWithSalary[0]
-               const workerSalary = Number(workerWithSalary[1])
-               if (resturants[resturantName].workers.some(employee => employee.name === workerName)) {
-                  continue
-               } else {
-                  resturants[resturantName].workers.push({ name: workerName, salary: workerSalary })
-                  resturants[resturantName].avergeSalary += workerSalary
-               }
-            }
+      const allResturants = {}
+      const arr = JSON.parse(textArea.value)
+      for (let i = 0; i < arr.length; i++) {
+         let [resturant, workersString] = arr[i].split(' - ');
+         const workers = workersString.split(', ')
+         if (!allResturants.hasOwnProperty(resturant)) {
+           allResturants[resturant] = { workers, average: undefined, bestWorker: undefined, bestSalary: undefined }
+           let bestWorker = undefined
+           let bestSalary = 0
+           let average = 0
+           for (const workerProfile of workers) {
+             let [worker, salary] = workerProfile.split(' ')
+             salary = Number(salary)
+             average += salary
+             if (bestSalary < salary) {
+               bestSalary = salary
+               bestWorker = worker
+             }
+           }
+           allResturants[resturant].average = (average / workers.length).toFixed(2)
+           allResturants[resturant].bestWorker = bestWorker
+           allResturants[resturant].bestSalary = bestSalary.toFixed(2)
          } else {
-            resturants[resturantName] = {
-               avergeSalary,
-               workers: [],
-
-            }
-            for (let i = 0; i < workersArr.length; i++) {
-               const workerWithSalary = workersArr[i].split(' ');
-               const workerName = workerWithSalary[0]
-               const workerSalary = Number(workerWithSalary[1])
-               resturants[resturantName].workers.push({ name: workerName, salary: workerSalary })
-               resturants[resturantName].avergeSalary += workerSalary
-            }
+           allResturants[resturant].workers = allResturants[resturant].workers.concat(workers)
+           let bestWorker = undefined
+           let bestSalary = 0
+           let average = 0
+           allResturants[resturant].average = undefined;
+           allResturants[resturant].bestSalary = undefined;
+           allResturants[resturant].bestWorker = undefined;
+           for (const workerProfile of allResturants[resturant].workers) {
+             let [worker, salary] = workerProfile.split(' ')
+             salary = Number(salary)
+             average += salary
+             if (bestSalary < salary) {
+               bestSalary = salary
+               bestWorker = worker
+             }
+           }
+           allResturants[resturant].average = (average / allResturants[resturant].workers.length).toFixed(2)
+           allResturants[resturant].bestWorker = bestWorker
+           allResturants[resturant].bestSalary = bestSalary.toFixed(2)
          }
-         resturants[resturantName].workers.sort((a, b) => b.salary - a.salary)
-         resturants[resturantName].bestSalary = resturants[resturantName].workers[0].salary
-
       }
 
-      for (const resturant in resturants) {
-         const average = (resturants[resturant].avergeSalary / resturants[resturant].workers.length).toFixed(2)
-         resturants[resturant].avergeSalary = Number(average)
+      let sortedEntries = Object.entries(allResturants).sort((a, b) => b[1].average - a[1].average)
+
+      const bestResturantText = `Name: ${sortedEntries[0][0]} Average Salary: ${sortedEntries[0][1].average} Best Salary: ${sortedEntries[0][1].bestSalary}`
+    
+      const bestResturantWorkers = sortedEntries[0][1].workers.sort((a, b) => Number(b.split(' ')[1]) - Number(a.split(' ')[1]))
+      const finalArr = []
+    
+      for (const employe of bestResturantWorkers) {
+        const [worker, salary] = employe.split(' ')
+        finalArr.push(`Name: ${worker} With Salary: ${salary}`)
+    
       }
-   
-
-   const sortedData = Object.entries(resturants)
-      .map(([key, value]) => ({ key, value }))
-      .sort((a, b) => b.value.avergeSalary - a.value.avergeSalary)
-
-   bestResturants.textContent = `Name: ${sortedData[0].key} Average Salary: ${(sortedData[0].value.avergeSalary).toFixed(2)} Best Salary: ${(sortedData[0].value.bestSalary).toFixed(2)}`
-
-   let bestWorkersString = ``
-
-   let string = ''
-   const stringArr = []
-   for (const resturant of sortedData) {
-      let counter = 0
-      for (const key of resturant.value.workers) {
-         string += `Name: ${key.name} With Salary: ${key.salary}`
-         stringArr.push(string)
-         string = ''
-      }
-      counter++
-      if (counter == 1) {
-         break
-      }
+    
+      bestResturant.textContent = bestResturantText
+      bestWorker.textContent = finalArr.join(' ')
    }
-   bestWorkers.textContent = stringArr.join(` `)
-}
 }
