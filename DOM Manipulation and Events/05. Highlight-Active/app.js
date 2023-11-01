@@ -1,15 +1,14 @@
 function focused() {
-    const input = document.querySelector('div')
+        const inputs = Array.from(document.querySelectorAll('input[type="text"]'))
 
-    input.addEventListener('focusin', focus)
-    input.addEventListener('focusout', blur)
-
-    function focus(event) {
-        event.target.parentElement.className = 'focused'
-    }
-
-    function blur(event) {
-        event.target.parentElement.className = ''
-    }
-
+        for (const input of inputs) {
+            input.addEventListener('focus',() =>{
+                console.log('focused');
+                input.parentElement.classList = 'focused'
+            })
+            input.addEventListener('blur',() =>{
+                console.log('blurred');
+                input.parentElement.classList = ''
+            })
+        }
 }

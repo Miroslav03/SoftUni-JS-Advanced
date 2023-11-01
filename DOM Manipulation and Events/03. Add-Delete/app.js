@@ -1,18 +1,17 @@
 function addItem() {
-    const input = document.getElementById('newItemText').value
-    const item  = document.getElementById('items')
+    const items = document.getElementById('items');
+    const newItemText = document.getElementById('newItemText').value;
+    const li = document.createElement('li');
+    li.textContent = newItemText
+    items.appendChild(li)
+    const deleteBtn = document.createElement('a')
+    deleteBtn.href = '#'
+    deleteBtn.textContent = '[Delete]'
+    li.appendChild(deleteBtn)
 
-    const li = document.createElement('li')
-    li.textContent = input
-    item.appendChild(li)
+    deleteBtn.addEventListener('click',deleteElement)
 
-    const deleteButton  = document.createElement('a')
-    deleteButton.href = '#'
-    deleteButton.textContent = '[Delete]'
-    li.appendChild(deleteButton)
-
-    deleteButton.addEventListener('click', function listener(){
+    function deleteElement(){
         li.remove()
-    })
-
+    }
 }

@@ -1,11 +1,9 @@
 function attachGradientEvents() {
-    const input = document.getElementById('gradient')
+    const gradientBox = document.getElementById('gradient')
     const result = document.getElementById('result')
+    gradientBox.addEventListener('mousemove',percentageShow)
 
-    input.addEventListener('mousemove', move)
-
-    function move(event) {
-        const x = Math.floor(event.offsetX / 3)
-        result.textContent = x + '%'
+    function percentageShow(event){
+        result.textContent = Math.floor((event.offsetX)/3) + '%'
     }
 }

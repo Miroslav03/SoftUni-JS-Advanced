@@ -1,20 +1,16 @@
 function deleteByEmail() {
+    const tableRows = Array.from(document.querySelectorAll('tbody tr td'))
+    const filteredArr = tableRows.filter((td, i) => i % 2 != 0)
     const input = document.querySelector('input[type="text"]').value
-    const table = Array.from(document.querySelectorAll('tbody tr'))
-    let result = document.getElementById('result')
-    
-    let flag = false
-
-    for (const el of table) {
-        col = el.children[1]
-        if(input == col.textContent){
-            el.remove()
-            flag = true
+    const result = document.getElementById('result')
+    for (const td of filteredArr) {
+        if(td.textContent == input){
+            td.parentElement.remove()
+            result.textContent = 'Deleted.'
+        }else{
+            result.textContent = 'Not found.'
         }
     }
-    if(flag){
-        result.textContent = 'Deleted.'
-    }else{
-        result.textContent = 'Not found.'
-    }
+
+
 }
