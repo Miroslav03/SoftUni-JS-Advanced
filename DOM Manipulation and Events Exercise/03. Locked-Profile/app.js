@@ -1,20 +1,22 @@
 function lockedProfile() {
-    const butons = Array.from(document.querySelectorAll('.profile button'))
+
+    const profiles  = Array.from(document.querySelectorAll('div[class="profile"]'))
     
-    for (const button of butons) {
-        const parent  = button.parentElement 
-        const locked = parent.querySelector('input[value="unlock"]')
-        button.addEventListener('click',()=>{
-            if(locked.checked){
-               const div = parent.querySelector('div')
-               if(div.style.display == 'block'){
-                button.textContent = 'Show more'
-                div.style.display = 'none'     
-               }else{
-                div.style.display = 'block'
-                button.textContent = 'Hide it'
-               }
+    for (const profile of profiles) {
+        const unlockedIsChecked = profile.querySelector('input[value="unlock"]');
+        const btn = profile.querySelector('button');
+        btn.addEventListener('click',() =>{
+            const hiddenInfo = profile.querySelector('div')
+            if(unlockedIsChecked.checked){
+                if(hiddenInfo.style.display == ''){
+                    hiddenInfo.style.display = 'block'
+                    btn.textContent = 'Hide it'
+                }else{
+                    hiddenInfo.style.display = ''
+                    btn.textContent = 'Show more'
+                }
             }
         })
+      
     }
 }

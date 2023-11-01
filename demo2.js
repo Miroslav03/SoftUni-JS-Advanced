@@ -1,14 +1,21 @@
-function asd(){
+function asd() {
 
-      
-    str1 = 
-    "Name: TheLake Average Salary: 913.33 Best Salary: 1300.00" 
 
-    str2  = 
-      "Name: TheLake Average Salary: 913.33 Best Salary: 1300.00"
+  str1 =
+    "The password for my bank account is 123pass321"
+  let newString = '';
+  for (let i = 0; i < str1.length; i++) {
+    let char = str1[i];
+    let number = char.charCodeAt();
+    number++;
+    char = String.fromCharCode(number);
+    newString += char;
+  }
+  
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    
+  }
 
-      if(str1 == str2){
-        console.log('a');
-      }
 }
 asd()

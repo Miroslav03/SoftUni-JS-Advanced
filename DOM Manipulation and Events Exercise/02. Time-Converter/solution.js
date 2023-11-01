@@ -1,40 +1,33 @@
 function attachEventsListeners() {
 
-    const dayInput = document.getElementById('days')
-    const hoursInput = document.getElementById('hours')
-    const minutesInput = document.getElementById('minutes')
-    const secondsInput = document.getElementById('seconds')
+    const daysInput = document.getElementById('days');
+    const hoursInput = document.getElementById('hours');
+    const minutesInput = document.getElementById('minutes');
+    const secondsInput = document.getElementById('seconds');
 
-    const daysButton = document.getElementById('daysBtn')
-    daysButton.addEventListener('click', () => {
-        hoursInput.value = dayInput.value * 24
-        minutesInput.value = hoursInput.value * 60
-        secondsInput.value = minutesInput.value * 60
+    const daysBtn = document.getElementById('daysBtn');
+    const hoursBtn = document.getElementById('hoursBtn');
+    const minutesBtn = document.getElementById('minutesBtn');
+    const secondsBtn = document.getElementById('secondsBtn');
 
+    daysBtn.addEventListener('click', () => {
+        hoursInput.value = Number(daysInput.value) * 24;
+        minutesInput.value = Number(hoursInput.value) * 60;
+        secondsInput.value = Number(minutesInput.value) * 60;
     })
-
-    const hoursButton = document.getElementById('hoursBtn')
-    hoursButton.addEventListener('click', () => {
-        dayInput.value = hoursInput.value / 24
-        minutesInput.value = hoursInput.value * 60
-        secondsInput.value = minutesInput.value * 60
-
+    hoursBtn.addEventListener('click', () => {
+        daysInput.value = Number(hoursInput.value) / 24;
+        minutesInput.value = Number(hoursInput.value) * 60;
+        secondsInput.value = Number(minutesInput.value) * 60;
     })
-
-    const minutesButton = document.getElementById('minutesBtn')
-    minutesButton.addEventListener('click', () => {
-        secondsInput.value = minutesInput.value * 60
-        hoursInput.value = minutesInput.value / 60
-        dayInput.value = hoursInput.value / 24
-
+    minutesBtn.addEventListener('click', () => {
+        hoursInput.value = Number(minutesInput.value) / 60;
+        daysInput.value = Number(hoursInput.value) / 24;
+        secondsInput.value = Number(minutesInput.value) * 60;
     })
-
-    const secondsButton = document.getElementById('secondsBtn')
-    secondsButton.addEventListener('click', () => {
-        minutesInput.value = secondsInput.value / 60
-        hoursInput.value = minutesInput.value / 60
-        dayInput.value = hoursInput.value / 24
-
+    secondsBtn.addEventListener('click', () => {
+        minutesInput.value = Number(secondsInput.value) / 60;
+        hoursInput.value = Number(minutesInput.value) / 60;
+        daysInput.value = Number(hoursInput.value) / 24;
     })
-
 }

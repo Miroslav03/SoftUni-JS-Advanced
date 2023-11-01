@@ -1,90 +1,73 @@
 function solve() {
-
-  //generateBox
-  //buyBox
   const [generateBox, buyBox] = Array.from(document.querySelectorAll('textarea'));
-  //generateButton
-  //buyButton
-  const [generateButton, buyButton] = Array.from(document.querySelectorAll('button'));
-  //table
+  const [generateBtn, buyBtn] = Array.from(document.querySelectorAll('button'));
+
   const table = document.querySelector('table');
+  const tbody = document.querySelector('tbody');
 
-  generateButton.addEventListener('click', generate);
-
-  function generate() {
-    const inputObj = JSON.parse(generateBox.value);
-
-    for (const obj of inputObj) {
-      const tbody = document.querySelector('tbody');
+  generateBtn.addEventListener('click', () => {
+    const input = JSON.parse(generateBox.value);
+    for (const obj of input) {
       const tr = document.createElement('tr');
       //image
-      const tdImage = document.createElement('td');
+      const imageTd = document.createElement('td');
       const img = document.createElement('img');
       img.src = obj.img;
-      tdImage.appendChild(img);
-      tr.appendChild(tdImage);
-      //name
-      const tdName = document.createElement('td');
-      const name = document.createElement('p');
-      name.textContent = obj.name;
-      tdName.appendChild(name);
-      tr.appendChild(tdName);
-      //price
-      const tdPrice = document.createElement('td');
-      const price = document.createElement('p');
-      price.textContent = Number(obj.price);
-      tdPrice.appendChild(price);
-      tr.appendChild(tdPrice);
-      //decoration
-      const tdDecoration = document.createElement('td');
-      const decoration = document.createElement('p');
-      decoration.textContent = Number(obj.decFactor);
-      tdDecoration.appendChild(decoration);
-      tr.appendChild(tdDecoration);
-      //checkBox
-      const tdCheckBox = document.createElement('td');
-      const checkBox = document.createElement('input');
-      checkBox.type = 'checkbox';
-      tdCheckBox.appendChild(checkBox);
-      tr.appendChild(tdCheckBox);
-
+      imageTd.appendChild(img);
+      tr.appendChild(imageTd);
       tbody.appendChild(tr);
+      //name
+      const nameTd = document.createElement('td');
+      const nameP = document.createElement('p');
+      nameP.textContent = obj.name;
+      nameTd.appendChild(nameP);
+      tr.appendChild(nameTd);
+      //price
+      const priceTd = document.createElement('td');
+      const priceP = document.createElement('p');
+      priceP.textContent = obj.price;
+      priceTd.appendChild(priceP);
+      tr.appendChild(priceTd);
+      //decoration factor
+      const decorationTd = document.createElement('td');
+      const decorationP = document.createElement('p');
+      decorationP.textContent = obj.decFactor;
+      decorationTd.appendChild(decorationP);
+      tr.appendChild(decorationTd);
+      //mark 
+      const markTd = document.createElement('td');
+      const markInput = document.createElement('input');
+      markInput.type = 'checkbox';
+      markTd.appendChild(markInput);
+      tr.appendChild(markTd);
     }
-  }
+  })
 
-  const allNames = [];
-  const allPrice = [];
-  const allDecoration = [];
-
-  buyButton.addEventListener('click', buy);
-
-  function buy() {
-    const checkedBoxes = Array.from(document.querySelectorAll('tbody input')).filter(x => x.checked);
-
-    for (const box of checkedBoxes) {
-      const parent = box.parentElement.parentElement;
-      const data = Array.from(parent.children);
-
-      const name = data[1].textContent;
-      const price = Number(data[2].textContent);
-      const decoration = Number(data[3].textContent);
-
-      allPrice.push(price);
-      allNames.push(name);
-      allDecoration.push(decoration);
+  buyBtn.addEventListener('click', () => {
+    const checkBoxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+    const bought = [];
+    const totalSum = [];
+    const averageDecoration = [];
+    for (const checkbox of checkBoxes) {
+      if (checkbox.checked) {
+        const allTdonRow = Array.from(checkbox.parentElement.parentElement.querySelectorAll('td'));
+        const name = allTdonRow[1].textContent;
+        const price = Number(allTdonRow[2].textContent);
+        const decorationFactor = Number(allTdonRow[3].textContent)
+        bought.push(name);
+        totalSum.push(price);
+        averageDecoration.push(decorationFactor);
+      }
     }
-    let totalPrice = 0;
-    for (const num of allPrice) {
-      totalPrice+=num;
-    }
-    let averageDec = 0
-    for (const dec of allDecoration) {
-      averageDec+=dec
-    } 
-    averageDec = averageDec/allDecoration.length
+    let totalPrice = (totalSum.reduce((a, x) => a + x, 0)).toFixed(2)
+      const boughtString = bought.join(', ')
+      let average = averageDecoration.reduce((a, x) => a + x, 0)
+      average = average / averageDecoration.length
 
-    buyBox.textContent += `Bought furniture: ${allNames.join(', ')}\n`;
-    buyBox.textContent += `Total price: ${totalPrice.toFixed(2)}\n`
-    buyBox.textContent += `Average decoration factor: ${averageDec}`
-  }
+      buyBox.textContent += `Bought furniture: ${boughtString}`
+      buyBox.textContent += `\nTotal price: ${totalPrice}`
+      buyBox.textContent += `\nAverage decoration factor: ${average}`
+  })
+
+
 }

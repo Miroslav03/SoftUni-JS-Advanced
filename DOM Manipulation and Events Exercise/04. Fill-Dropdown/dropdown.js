@@ -1,14 +1,12 @@
 function addItem() {
-    const newItemText = document.getElementById('newItemText')
-    const newItemValue = document.getElementById('newItemValue')
+    const newItemText = document.getElementById('newItemText');
+    const newItemValue = document.getElementById('newItemValue');
+    const menu = document.getElementById('menu');
 
-    const menu = document.getElementById('menu')
-    const text = document.createElement('option')
-
-    text.value = newItemValue.value
-    text.textContent = newItemText.value
-
-    menu.appendChild(text)
+    const option = document.createElement('option');
+    option.textContent = newItemText.value;
+    option.value = newItemValue.value;
+    menu.appendChild(option)
 
     newItemText.value = ''
     newItemValue.value = ''

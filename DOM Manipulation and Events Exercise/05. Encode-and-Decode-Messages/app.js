@@ -1,40 +1,38 @@
 function encodeAndDecodeMessages() {
-    const buttons  = document.querySelectorAll('#main div button')
-    const textBoxes = document.querySelectorAll('#main div textarea')
-    //firstTextArea
-    const buttonEncode  = buttons[0]
-    const enocdeText  = textBoxes[0]
+    const buttons = Array.from(document.querySelectorAll('button'));
+    const encodeBtn = buttons[0];
+    const decodeBtn = buttons[1];
 
-    buttonEncode.addEventListener('click',encode)
-    function encode(){
-        const text = enocdeText.value
-        let encodedText = ''
+    const textAreas = Array.from(document.querySelectorAll('textarea'));
+    const encodeTextArea = textAreas[0];
+    const decodeTextArea = textAreas[1];
 
-        for (let i = 0; i < text.length; i++) {
-            const letter = text[i];
-            let asciiCode = letter.charCodeAt()
-            let newLetter  = String.fromCharCode(asciiCode+1)
-            encodedText += newLetter
+    encodeBtn.addEventListener('click', () => {
+        const encodeText = encodeTextArea.value
+        let newString = '';
+        for (let i = 0; i < encodeText.length; i++) {
+            let char = encodeTextArea.value[i];
+            let number = char.charCodeAt();
+            number++;
+            char = String.fromCharCode(number);
+            newString += char;
         }
-        enocdeText.value = ''
-        decodeText.value = encodedText
+        encodeTextArea.value = ''
+        decodeTextArea.value = newString
+    })
 
-    }
-    //secondTextArea
-    const buttonDecode = buttons[1]
-    const decodeText  = textBoxes[1]
-
-    buttonDecode.addEventListener('click',decode)
-    function decode(){
-        const text = decodeText.value
-        let decodededText = ''
-        for (let i = 0; i < text.length; i++) {
-            const letter = text[i];
-            let asciiCode = letter.charCodeAt()
-            let newLetter  = String.fromCharCode(asciiCode-1)
-            decodededText += newLetter
+    decodeBtn.addEventListener('click',() =>{
+        const decodeText = decodeTextArea.value
+        let newString = '';
+        for (let i = 0; i < decodeText.length; i++) {
+            let char = decodeText[i];
+            let number = char.charCodeAt();
+            number--;
+            char = String.fromCharCode(number);
+            newString += char;
         }
-        decodeText.value = decodededText
-    }
+        encodeTextArea.value = ''
+        decodeTextArea.value = newString
+    })
 
 }
