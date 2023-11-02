@@ -1,34 +1,21 @@
-function solution(){
+function solution() {
     let string = '';
-
-    function append (s){
-        string+=s
-        return string
-    }    
-
-    function removeStart(n){
-        string = string.slice(n)     
-        return string
-    }
-
-    function removeEnd(n){
-        string = string.slice(0,-n)   
-        return string
-    }         
-
-    function print(){
-        console.log(string);
-    }
-
     return {
-        append,
-        removeStart,
-        removeEnd,
-        print
+        append(str) {
+            string += str;
+        },
+        removeStart(n) {
+            string = string.substring(n)
+        },
+        removeEnd(n) {
+            string = string.substring(0,string.length - n)
+
+        },
+        print() {
+            console.log(string);
+        }
     }
 }
-
-
 
 let secondZeroTest = solution();
 secondZeroTest.append('123');

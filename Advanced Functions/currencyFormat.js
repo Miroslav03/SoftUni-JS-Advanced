@@ -5,11 +5,10 @@ function currencyFormatter(separator, symbol, symbolFirst, value) {
     else return result + ' ' + symbol;
 }
 
-function createFormatter(separator, symbol, symbolFirst, value){
-
-    const formated = value.bind(null, separator, symbol, symbolFirst,)
-        
-    return formated
+function createFormatter(separator, symbol, symbolFirst, currencyFormatter) {
+    return function (price) {
+        return currencyFormatter(separator, symbol, symbolFirst,price)
+    }
 }
 
 

@@ -1,74 +1,55 @@
 function solution() {
-    const macronutrinets = {
-        protein: 0,
-        carbohydrate: 0,
-        fat: 0,
-        flavour: 0,
-    }
-    const commands = {
-        restock,
-        prepare,
-        report
-    }
 
+    const methods = { restock, prepare, report };
+    const microelements = { protein: 0, carbohydrate: 0, fat: 0, flavour: 0 };
     const recipes = {
-        apple: parseRecipeData(0, 1, 0, 2),
-        lemonade: parseRecipeData(0, 10, 0, 20),
-        burger: parseRecipeData(0, 5, 7, 3),
-        eggs: parseRecipeData(5, 0, 1, 1),
-        turkey: parseRecipeData(10, 10, 10, 10)
+        apple: parseNeededIngredinets(0, 1, 0, 2),
+        lemonade: parseNeededIngredinets(0, 10, 0, 20),
+        burger: parseNeededIngredinets(0, 5, 7, 3),
+        eggs: parseNeededIngredinets(5, 0, 1, 1),
+        turkey: parseNeededIngredinets(10, 10, 10, 10)
     }
 
-    function parseRecipeData(protein, carbohydrate, fat, flavour) {
-        return {
-            protein,
-            carbohydrate,
-            fat,
-            flavour
-        }
+    function parseNeededIngredinets(protein, carbohydrate, fat, flavour) {
+        return { protein, carbohydrate, fat, flavour }
     }
-    function restock(microelement, quanity) {
-        macronutrinets[microelement] += Number(quanity)
+
+    function restock(ingrtedient, quanity) {
+        microelements[ingrtedient] += Number(quanity);
         return 'Success';
     }
 
-    function prepare(recipe, quanity) {
-        const needed = recipes[recipe];
+    function prepare(name, quanity) {
         quanity = Number(quanity);
-        for (const key in macronutrinets) {
-            if ((macronutrinets[key] - needed[key] * quanity) < 0) {
+        for (const key in microelements) {
+            if ((microelements[key] - recipes[name][key] * quanity) < 0) {
+                errorFlag = true;
                 return `Error: not enough ${key} in stock`;
+            } else{
+                microelements[key] -= recipes[name][key] * quanity;
             }
         }
-        for (const key in macronutrinets) {
-            macronutrinets[key] -= needed[key] * quanity;
-        }
-    
-        return `Success`
+        return 'Success';
+
+    } function report() {
+        return `protein=${microelements.protein} carbohydrate=${microelements.carbohydrate} fat=${microelements.fat} flavour=${microelements.flavour}`;
     }
 
-    function report() {
-        let finalString = ``
-        for (const [key, value] of Object.entries(macronutrinets)) {
-            finalString += `${key}=${value}` + ' ';
 
-        }
-        return finalString.trim();
+    return function (elements) {
+        const [command, ingrtedient, quanity] = elements.split(' ');
+        return methods[command](ingrtedient, quanity);
     }
 
-    return function (string) {
-        const [command, second, quanity] = string.split(' ');
-
-        return commands[command](second, quanity);
-    }
 
 }
 
-let manager = solution();
 
-console.log(manager("restock flavour 10"))
-console.log(manager("prepare apple 1"))
-console.log(manager("restock fat 10"))
-console.log(manager("prepare burger 1"))
-console.log(manager("report"))
+let manager = solution (); 
+console.log (manager ('restock carbohydrate 10')); // Success 
+console.log (manager ('restock flavour 10',)); // Error: not enough carbohydrate in stock 
+console.log (manager ('prepare apple 1',)); // Error: not enough carbohydrate in stock 
+console.log (manager ('restock fat 10',)); // Error: not enough carbohydrate in stock 
+console.log (manager ('prepare burger 1',)); // Error: not enough carbohydrate in stock 
+console.log (manager ('report',)); // Error: not enough carbohydrate in stock 
 

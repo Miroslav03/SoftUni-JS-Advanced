@@ -1,14 +1,10 @@
 
-function solution(num) {
-
-    function add(number) {
-
-        return num + number
+function solution(addedNum) {
+    return function(num){
+        return addedNum + num
     }
-    return add
-
 }
 
-
-
 let add5 = solution(5);
+console.log(add5(2));
+console.log(add5(3));

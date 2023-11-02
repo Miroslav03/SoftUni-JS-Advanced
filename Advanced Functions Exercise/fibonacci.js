@@ -1,18 +1,17 @@
 function getFibonator() {
-    let number = [0, 1]
-    let flag = false;
-    return function () {
-        if (number[0] == 0 && flag == false) {
-            flag = true;
+    const arr = [0,1]
+    let index = 0
+    return function create() {
+        if(index < 1){
+            index++
             return 1
-
+        }else{
+            const lastTwoNumSum = arr.reduce((a, x) => a + x, 0)
+        arr.push(lastTwoNumSum);
+        arr.shift()
+        return lastTwoNumSum
         }
-        let currentNum = number[0] + number[1];
-        number.shift();
-        number.push(currentNum);
-        return currentNum
     }
-
 }
 
 

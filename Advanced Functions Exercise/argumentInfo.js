@@ -1,28 +1,22 @@
 function argumentInfo(...arguments) {
-    const arr = [];
-    const counter = {};
-    for (const arg of arguments) {
-        let type = typeof arg;
-        arr.push({ type: type, value: arg })
-        if (!counter[type]) {
-            counter[type] = 0;
-            counter[type]++;
+
+    const obj = {}
+    const arr = arguments
+
+    for (const el of arr) {
+        if (!obj.hasOwnProperty(typeof el)) {
+            obj[typeof el] = 0;
+            obj[typeof el]++
+            console.log(`${typeof el}: ${el}`);
         } else {
-            counter[type]++;
+            obj[typeof el] += 1
+            console.log(`${typeof el}: ${el}`);
         }
     }
 
-    for (const obj of arr) {
-        const entries = Object.entries(obj);
-        console.log(`${entries[0][1]}: ${entries[1][1]}`);
-
-    }
-
-    const sortedObj = Object.entries(counter).sort(((a, b) => b[1] - a[1]));
-    for (const [key, value] of sortedObj) {
+    const sortedEntries = Object.entries(obj).sort((a, b) => b[1] - a[1])
+    for (const [key,value] of sortedEntries) {
         console.log(`${key} = ${value}`);
     }
-
-
 }
-argumentInfo('cat', 42, function () { console.log('Hello world!'); }, function () { console.log('Hsadd!'); })
+argumentInfo({ name: 'bob' }, 3.333, 9.999)
