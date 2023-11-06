@@ -1,14 +1,15 @@
 function add(n) {
-    let temp = 0
+    let sum = 0;
+    sum += n;
 
-    function recursive(x) {
-        temp += x
-
-        return recursive
+    function calc(anotherNum) {
+        sum += anotherNum;
+        return calc
     }
 
-    recursive.toString = () => temp
-    return recursive(n)
+    calc.toString = () => sum
+    
+    return calc
 }
 
 console.log(add(1)(6)(-3).toString())

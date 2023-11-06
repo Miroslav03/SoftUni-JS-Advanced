@@ -1,22 +1,24 @@
 function calculator() {
-    
-    const html = { s1: "", s2: "", output: "" }
 
-    return {
-        init: (selector1,selector2,resultSelector) => {
-            html.s1 = document.querySelector(selector1);
-            html.s2 = document.querySelector(selector2);
-            html.output = document.querySelector(resultSelector);
-        },
-        add: () => {
-            html.output.value = Number(html.s1.value) + Number(html.s2.value);
-        },
-        subtract: () => {
-            html.output.value = Number(html.s1.value) -  Number(html.s2.value);
-
-        }
+    const refrences = {
+        num1:'',
+        num2:'',
+        result:''
     }
 
+    return {
+        init(number1, number2, resultField) {
+            refrences.num1 = document.querySelector(number1)
+            refrences.num2 = document.querySelector(number2)
+            refrences.result = document.querySelector(resultField);
+        },
+        add() {
+            refrences.result.value = Number(refrences.num1.value) +  Number(refrences.num2.value)
+        },
+        subtract() {
+            refrences.result.value = refrences.num1.value -  refrences.num2.value
+        }
+    }
 }
 const calculate = calculator();
 calculate.init('#num1', '#num2', '#result');

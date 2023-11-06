@@ -1,44 +1,53 @@
-function printDeckOfCards(cards) {
-    const finalCardArr = []
-    let message = undefined;
-    for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
+function printDeckOfCards(arrOfCards) {
+    const finalArr = [];
+    let flag = undefined;
+    for (const el of arrOfCards) {
         let face = undefined;
         let suit = undefined;
-        if (card.length > 2) {
-            face = card[0] + card[1];
-            suit = card[2];
+        if (el.length == 3) {
+            face = el[0] + el[1];
+            suit = el[2]
         } else {
-            face = card[0];
-            suit = card[1];
+            [face, suit] = el.split('');
         }
-        const readyCard = createCard(face, suit)
-        finalCardArr.push(readyCard)
-        if (message != undefined) {
-            return console.log(message);
-        }
+        const card = createCard(face, suit);
+        finalArr.push(card)
     }
+    if (flag == true) {
+        return
+    }
+    console.log(finalArr.join(' '));
+
 
     function createCard(face, suit) {
-
-        const faces = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        let finalFace = undefined;
+        let finalSuit = undefined;
         const suits = {
-            "S": `\u2660`,
-            "H": `\u2665`,
-            "D": `\u2666`,
-            "C": `\u2663`
+            'S': `\u2660`,
+            'H': `\u2665`,
+            'D': `\u2666`,
+            'C': `\u2663`
         }
 
-        if (!faces.includes(face)) {
-            return message = `Invalid card: ${face + suit}`
+        const cardFaces = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
-        } else if (!suits.hasOwnProperty(suit)) {
-            return message = `Invalid card: ${face + suit}`
+        if (cardFaces.includes(face)) {
+            finalFace = face;
+        } else {
+            console.log(`Invalid card: ${face}${suit}`);
+            flag = true;
+            return
+        }
+
+        if (suits.hasOwnProperty(suit)) {
+            finalSuit = suit
+        } else {
+            console.log(`Invalid card: ${face}${suit}`);
+            flag = true;
+            return
         }
 
         return `${face}${suits[suit]}`
-
     }
-
-    return console.log(finalCardArr);
 }
+printDeckOfCards(['5S', '3D', 'QD', '1C'])

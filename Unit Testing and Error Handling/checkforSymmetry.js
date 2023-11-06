@@ -8,44 +8,36 @@ function isSymmetric(arr) {
     let equal = (JSON.stringify(arr) == JSON.stringify(reversed));
     return equal;
 }
-console.log(isSymmetric([1, 2, '2', 1]))
 
-describe('Main tests ', function () {
-
-    it('Take an array as argument', () => {
-        const arr = [];
+describe('Main tests', () => {
+    it('Incorrect input',() => {
+        const arr = 'Miro'
+        const result = isSymmetric(arr)
+        expect(result).to.equal(false)
+    })
+    it('Correct input',() => {
+        const arr = []
         const result = isSymmetric(arr)
         expect(result).to.equal(true)
     })
-    it('Incorrect type of input', () => {
-        const arr = 'Miro';
-        const result = isSymmetric(arr)
-        expect(result).to.equal(false)
-    })
-    it('Check for symetrical Arrays', () => {
-        const arr = [1, 2, 2, 1];
+    it('Symetric Arr',() => {
+        const arr = [1,1,1]
         const result = isSymmetric(arr)
         expect(result).to.equal(true)
     })
-    it('Check for unsymetrical Arrays', () => {
-        const arr = [1, 2, 1, 1];
+    it('Non-symetric Arr',() => {
+        const arr = [1,2,3]
         const result = isSymmetric(arr)
         expect(result).to.equal(false)
     })
-    it('Check for string in the Array', () => {
-        const arr = [1, 2, 'Miro', 1];
-        const result = isSymmetric(arr)
-        expect(result).to.equal(false)
-    })
-    it('Check for string symetry in the Array', () => {
-        const arr = ['a','b','b',"a"];
+    it('Symetric String Arr',() => {
+        const arr = ['a','b','b','a']
         const result = isSymmetric(arr)
         expect(result).to.equal(true)
     })
-    it('Check for number string in the Array', () => {
-        const arr = [1, 2, '2', 1];
+    it('Random String inside the Arr',() => {
+        const arr = [1,2,'2',1]
         const result = isSymmetric(arr)
         expect(result).to.equal(false)
     })
-}
-)
+})

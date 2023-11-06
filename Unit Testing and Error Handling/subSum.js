@@ -1,22 +1,24 @@
 function subSum(array, start, end) {
 
-   if (Array.isArray(array) == false) {
+   if (!Array.isArray(array)) {
       return NaN;
    }
+
    if (start < 0) {
       start = 0;
    }
+
    if (end > array.length - 1) {
       end = array.length - 1;
    }
-   for (let i = 0; i < array.length; i++) {
-      const number = array[i];
-      if (typeof number == 'string') {
-         return NaN
+
+   return array.map(x => Number(x)).reduce((a, x, i) => {
+      if (i >= start && i <= end) {
+         a += x
       }
-   }
-   const sum = array.slice(start,end+1).reduce((acc, n) => acc + n, 0);
-   return sum
+      return a
+   }, 0)
+
 
 }
 console.log(subSum([10, 20, 30, 40, 50, 60], 3, 300))

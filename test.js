@@ -1,4 +1,4 @@
-const { expect } = require('chai')
+const {expect} = require ('chai')
 
 function createCalculator() {
     let value = 0;
@@ -8,10 +8,6 @@ function createCalculator() {
         get: function () { return value; }
     }
 }
-const obj = createCalculator()
-obj.add(5)
-obj.subtract(-1)
-console.log(obj.get());
 
 describe('Main tests',() =>{
     it('Returns object',() =>{
