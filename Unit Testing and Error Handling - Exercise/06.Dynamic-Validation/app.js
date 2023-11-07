@@ -1,11 +1,10 @@
 function validate() {
-    const pattern = /[a-z]+@[a-z]+.[a-z]+/g;
-    const input = document.getElementById('email');
-
+    const regex = /[a-z]+@[a-z]+.[a-z]+/g
+    const input = document.getElementById('email')
     input.addEventListener('change', () => {
-        if(!pattern.test(input.value)){
+        if (!regex.test(input.value)) {
             input.classList.add('error')
-        }else{
+        } else {
             input.classList.remove('error')
         }
     })

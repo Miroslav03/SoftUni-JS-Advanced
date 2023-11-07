@@ -1,11 +1,10 @@
 function notify(message) {
+  const notification = document.getElementById('notification')
+  notification.textContent = message
+  notification.style.display = 'block'
 
-  const div = document.getElementById('notification');
-  div.textContent = message
-  div.style.display = 'block'
-  
-  div.addEventListener('click',()=>{
-  div.style.display = 'none'
+  notification.addEventListener('click', () => {
+    notification.style.display = ''
 
   })
 }

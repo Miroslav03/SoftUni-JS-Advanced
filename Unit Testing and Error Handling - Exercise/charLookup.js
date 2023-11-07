@@ -9,31 +9,26 @@ function lookupChar(string, index) {
     }
     return string.charAt(index);
 }
-lookupChar('Miro', 2.14)
 
-describe('Main tests', function () {
-    it('Both parameters are invalid', () => {
-        expect(lookupChar(19, true)).to.equal(undefined)
-    })
-    it('Both parameters are valid', () => {
-        expect(lookupChar('Miro', 2)).to.equal('r')
-    })
+/* console.log(lookupChar('MIro',1)); */
 
-    it('Second parameter is bigger than the string length', () => {
-        expect(lookupChar('Miro', 15)).to.equal('Incorrect index')
-    })
-    it('Second parameter is lower than the string length', () => {
-        expect(lookupChar('Miro', -1)).to.equal('Incorrect index')
+describe('Main tests', () => {
+    it('parameters are incorrect', () => {
+        expect(lookupChar(12,'Miro')).to.equal(undefined);
+        expect(lookupChar(12,1)).to.equal(undefined);
+        expect(lookupChar('Miro','MIro')).to.equal(undefined);
+        expect(lookupChar('Miro','1.3')).to.equal(undefined);
+        expect(lookupChar('Miro','1')).to.equal(undefined);
+        expect(lookupChar('Miro',1.2)).to.equal(undefined);
     })
 
-    it('First parameter is invalid', () => {
-        expect(lookupChar(true, 2)).to.equal(undefined)
-    })
-    it('Second parameter is a string', () => {
-        expect(lookupChar('Miro', '19')).to.equal(undefined)
-    })
-    it('Second parameter is a floating point number', () => {
-        expect(lookupChar('Miro', 2.14)).to.equal(undefined)
+    it('incorrect index', () => {
+        expect(lookupChar('Miro',12)).to.equal("Incorrect index");
+        expect(lookupChar('Miro',-1)).to.equal("Incorrect index");
     })
 
+    it('incorrect index', () => {
+        expect(lookupChar('Miro',3)).to.equal("o");
+        
+    })
 })
