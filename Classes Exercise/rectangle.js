@@ -1,22 +1,18 @@
-function rectangle(){
 
-    class Rectangle {
-        constructor(width,height,color){
-            this.width = width;
-            this.height = height;
-            this.color = color;
-        }
-
-        calcArea(){
-            return this.width*this.height;
-        }
+class Rectangle {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
     }
-
-
-    let rect = new Rectangle(4, 5, 'Red');
-    console.log(rect.width);
-    console.log(rect.height);
-    console.log(rect.color);
-    console.log(rect.calcArea());
+    calcArea() {
+        return this.width * this.height;
+    }
 }
-rectangle()
+
+
+let rect = new Rectangle(4, 5, 'Red');
+console.log(rect.width);
+console.log(rect.height);
+console.log(rect.color);
+console.log(rect.calcArea());

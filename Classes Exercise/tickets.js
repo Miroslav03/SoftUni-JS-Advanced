@@ -1,37 +1,44 @@
 function tickets(array, sortBy) {
-    let finalArr = [];
+    const finalArr = [];
 
     class Ticket {
         constructor(destination, price, status) {
             this.destination = destination;
-            this.price = price
+            this.price = price;
             this.status = status;
         }
     }
-
-    for (let i = 0; i < array.length; i++) {
-        let [destination, price, status] = array[i].split('|');
-        price = Number(price);
-        const command = new Ticket(destination, price, status);
-        finalArr.push(command);
-
+    for (const el of array) {
+        let [name, price, departed] = el.split('|');
+        price = Number(price)
+        const currentTicket = new Ticket(name, price, departed);
+        finalArr.push(currentTicket);
     }
 
     switch (sortBy) {
-        case 'destination': {
-            return finalArr.sort((a, b) => a.destination.localeCompare(b.destination));
-        }
         case 'status': {
-            return finalArr.sort((a, b) => a.status.localeCompare(b.status));  
-        }
-        case 'price': {
-            return finalArr.sort((a, b) => a.price - b.price);
+            finalArr.sort((a, b) => a.status.localeCompare(b.status))
+            break;
+        } case 'destination': {
+            finalArr.sort((a, b) => a.destination.localeCompare(b.destination))
+            break;
+        } case 'price': {
+            finalArr.sort((a, b) => a.price - b.price)
+            break;
         }
     }
-
+   
+    return finalArr
 }
 tickets(['Philadelphia|94.20|available',
-'New York City|95.99|available',
-'New York City|95.99|sold',
-'Boston|126.20|departed'],
-'status')
+    'New York City|95.99|available',
+    'New York City|95.99|sold',
+    'Boston|126.20|departed'],
+    'status')
+console.log('------------------------');
+    tickets(['Philadelphia|94.20|available',
+    'New York City|95.99|available',
+    'New York City|95.99|sold',
+    'Boston|126.20|departed'],
+   'destination'
+   )

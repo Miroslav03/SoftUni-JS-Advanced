@@ -1,16 +1,11 @@
-function pointDistance() {
-
-    class Point {
-        constructor(x, y) {
+    class Point{
+        static distance(point1,point2){
+            //√[(x2 − x1)2 + (y2 − y1)2].
+            return Math.sqrt((point2.x - point1.x)**2 + (point2.y - point1.y)**2 )
+        }
+        constructor(x,y){
             this.x = x;
             this.y = y;
-        }
-
-        static distance(p1, p2) {
-            const xDiff = p2.x - p1.x;
-            const yDiff = p2.y - p1.y;
-            const distance = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
-            return distance;
         }
 
     }
@@ -20,5 +15,4 @@ function pointDistance() {
     console.log(Point.distance(p1, p2));
 
 
-}
-pointDistance()
+
