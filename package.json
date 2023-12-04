@@ -4,7 +4,7 @@
   "description": "",
   "main": "demo.js",
   "scripts": {
-    "test": "mocha mathEnforcer.js"
+    "test": "mocha onlineStore.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Miroslav03/JS-Advanced#readme",
   "dependencies": {
-    "chai": "^4.3.7"
+    "chai": "^4.3.10"
   },
   "devDependencies": {
     "mocha": "^10.2.0"
