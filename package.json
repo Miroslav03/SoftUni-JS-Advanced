@@ -4,7 +4,7 @@
   "description": "",
   "main": "demo.js",
   "scripts": {
-    "test": "mocha recipeSelection.js"
+    "test": "mocha petAdoptionAgency.js"
   },
   "repository": {
     "type": "git",
