@@ -1,3 +1,7 @@
+# SoftUni-Advanced-JavaScript
+
+Course Overview:
+
 Nested Arrays: Exploring nested arrays for organizing and working with multi-dimensional data structures.
 
 Deeper Object Learning and Composition: Diving into advanced object-oriented concepts such as composition to build more flexible and reusable code.
